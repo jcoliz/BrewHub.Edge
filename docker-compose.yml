@@ -21,7 +21,6 @@ services:
     image: brewhub.azurecr.io/tempcontroller:local-20230524-102615-amd64
     container_name: tempcontroller
     environment:
-      - PROVISIONING__DEVICEID=docker-1
       - INFLUXDB__URL=http://influxdb:8086
       - INFLUXDB__TOKEN=12345678
       - INFLUXDB__ORG=brewhub
