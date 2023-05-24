@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   influxdb:
-    image: influxdb:2.6-alpine
+    image: influxdb:2.7.1-alpine
     container_name: influxdb
     restart: always
     environment:
