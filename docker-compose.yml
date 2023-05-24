@@ -20,6 +20,8 @@ services:
   tempcontroller:
     image: brewhub.azurecr.io/tempcontroller:local-20230524-102615-amd64
     container_name: tempcontroller
+    depends_on:
+      - influxdb
     environment:
       - INFLUXDB__URL=http://influxdb:8086
       - INFLUXDB__TOKEN=12345678
@@ -27,6 +29,23 @@ services:
       - INFLUXDB__BUCKET=dockerism
     volumes:
     - ./config.toml:/config.toml:ro
+  grafana:
+    image: grafana/grafana:9.5.2
+    container_name: grafana-server
+    restart: always
+    depends_on:
+      - influxdb
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_INSTALL_PLUGINS=
+    links:
+      - influxdb
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
 
 volumes:
   grafana_data: {}

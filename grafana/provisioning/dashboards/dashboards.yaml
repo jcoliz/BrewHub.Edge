@@ -1,0 +1,7 @@
+apiVersion: 1
+ 
+providers:
+  - name: 'Primary'
+    folder: 'Devices'
+    options:
+      path: /etc/grafana/provisioning/dashboards
