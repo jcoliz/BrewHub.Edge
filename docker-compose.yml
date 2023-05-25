@@ -31,7 +31,7 @@ services:
     - ./config.toml:/config.toml:ro
   grafana:
     image: grafana/grafana:9.5.2
-    container_name: grafana-server
+    container_name: grafana
     restart: always
     depends_on:
       - influxdb
@@ -47,6 +47,13 @@ services:
     volumes:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
+  mqtt:
+    image: eclipse-mosquitto:2.0.15
+    container_name: mqtt
+    restart: always
+    ports:
+      - '1883:1883'
+      - '9001:9001'
 
 volumes:
   grafana_data: {}
