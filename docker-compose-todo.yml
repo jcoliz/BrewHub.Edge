@@ -19,3 +19,26 @@ services:
     ports:
       - '1883:1883'
       - '9001:9001'
+  mqtt:
+    image: eclipse-mosquitto:2.0.15
+    container_name: mosquitto
+    restart: always
+    ports:
+      - '1883:1883'
+      - '9001:9001'
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+  mqtt:
+    image: vernemq/vernemq:1.12.6.2
+    container_name: vernemq
+    restart: always
+    ports:
+      - '1883:1883'
+      - '8890:8890'
+      - '8889:8889'
+      - '8888:8888'
+    environment:
+      - DOCKER_VERNEMQ_ACCEPT_EULA=yes
+    volumes:
+      - ./vernemq.conf:/etc/vernemq/vernemq.conf
+      - vernemq_data:/var/lib/vernemq      
