@@ -1,5 +1,29 @@
 version: '3.6'
 services:
+  mqtt:
+    image: vernemq/vernemq:1.12.6.2
+    container_name: vernemq
+    restart: always
+    ports:
+      - '1883:1883'
+    environment:
+      - DOCKER_VERNEMQ_ACCEPT_EULA=yes
+      - DOCKER_VERNEMQ_ALLOW_ANONYMOUS=on
+    volumes:
+      - vernemq_data:/var/lib/vernemq
+  telegraf:
+    image: telegraf:1.26.3-alpine
+    container_name: telegraf
+    restart: always
+    volumes:
+    - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    depends_on:
+      - influxdb
+      - mqtt
+    links:
+      - influxdb
+    ports:
+    - '8125:8125'
   influxdb:
     image: influxdb:2.7.1-alpine
     container_name: influxdb
@@ -17,18 +41,6 @@ services:
       - '8086:8086'
     volumes:
       - influxdb_data:/var/lib/influxdb2
-  tempcontroller:
-    image: brewhub.azurecr.io/tempcontroller:local-20230524-102615-amd64
-    container_name: tempcontroller
-    depends_on:
-      - influxdb
-    environment:
-      - INFLUXDB__URL=http://influxdb:8086
-      - INFLUXDB__TOKEN=12345678
-      - INFLUXDB__ORG=brewhub
-      - INFLUXDB__BUCKET=dockerism
-    volumes:
-    - ./config.toml:/config.toml:ro
   grafana:
     image: grafana/grafana:9.5.2
     container_name: grafana
@@ -47,17 +59,6 @@ services:
     volumes:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
-  mqtt:
-    image: vernemq/vernemq:1.12.6.2
-    container_name: vernemq
-    restart: always
-    ports:
-      - '1883:1883'
-    environment:
-      - DOCKER_VERNEMQ_ACCEPT_EULA=yes
-      - DOCKER_VERNEMQ_ALLOW_ANONYMOUS=on
-    volumes:
-      - vernemq_data:/var/lib/vernemq
 volumes:
   grafana_data: {}
   influxdb_data: {}

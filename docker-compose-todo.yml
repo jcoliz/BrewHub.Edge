@@ -1,17 +1,17 @@
 version: '3.6'
 services:
-  telegraf:
-    image: telegraf:1.25-alpine
-    container_name: telegraf
-    restart: always
-    volumes:
-    - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+  tempcontroller:
+    image: brewhub.azurecr.io/tempcontroller:local-20230524-102615-amd64
+    container_name: tempcontroller
     depends_on:
-      - influxdb
-    links:
-      - influxdb
-    ports:
-    - '8125:8125'
+      - mqtt
+    environment:
+      - INFLUXDB__URL=http://influxdb:8086
+      - INFLUXDB__TOKEN=12345678
+      - INFLUXDB__ORG=brewhub
+      - INFLUXDB__BUCKET=dockerism
+    volumes:
+    - ./config.toml:/config.toml:ro
   mqtt:
     image: eclipse-mosquitto:2.0.15
     container_name: mqtt
