@@ -12,3 +12,10 @@ services:
       - influxdb
     ports:
     - '8125:8125'
+  mqtt:
+    image: eclipse-mosquitto:2.0.15
+    container_name: mqtt
+    restart: always
+    ports:
+      - '1883:1883'
+      - '9001:9001'
