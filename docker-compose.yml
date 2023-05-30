@@ -57,6 +57,15 @@ services:
     volumes:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
+  dashboard:
+    image: dashboard:3
+    container_name: dashboard
+    restart: always
+    ports:
+      - '80:80'
+    depends_on:
+      - grafana
+      - influxdb
 volumes:
   grafana_data: {}
   influxdb_data: {}
