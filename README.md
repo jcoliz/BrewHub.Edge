@@ -1,7 +1,23 @@
-# Distillery Edge Module
+# Distillery Edge Configuration
 
-This module is a component in the overall suite of containers running on the Edge Device.
-This module will receive telemetry from the downstream controllers, and then decide what happens
-with it next--particularly what gets sent to the cloud and when.
+This section defines a docker composition which runs on the edge device, communicating
+with leaf devices on the same network.
 
-The overall Edge Device composition is defined in the `deploy/edge` folder.
+Currently, there is no solution-specific code running on the edge layer. But if there is
+at some point, this is where it would reside.
+
+## Edge stack
+
+To bring up the edge stack...
+
+```
+docker compose up
+```
+
+## Simulated controllers
+
+To add simulated controllers to the mix, also include the `docker-compose-controllers.yml` file.
+
+```
+docker compose -f docker-compose.yml -f docker-compose-controllers.yml up
+```
