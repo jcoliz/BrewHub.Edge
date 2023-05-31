@@ -34,4 +34,5 @@ services:
       - DOCKER_VERNEMQ_ACCEPT_EULA=yes
     volumes:
       - ./vernemq.conf:/etc/vernemq/vernemq.conf
-      - vernemq_data:/var/lib/vernemq      
+      - vernemq_data:/var/lib/vernemq
+

@@ -1,5 +1,5 @@
 #
-# Version 2: Using VerneMQ, with conf file
+# Version 3: Using VerneMQ, with conf file
 #
 
 version: '3.6'

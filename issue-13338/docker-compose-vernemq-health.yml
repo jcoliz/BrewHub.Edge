@@ -1,5 +1,5 @@
 #
-# Version 3: Using VerneMQ, no conf file, with health check
+# Version 4: Using VerneMQ, no conf file, with health check
 #
 
 version: '3.6'
