@@ -1,3 +1,7 @@
+#
+# Version 3: Using VerneMQ, no conf file, with health check
+#
+
 version: '3.6'
 services:
   mqtt:

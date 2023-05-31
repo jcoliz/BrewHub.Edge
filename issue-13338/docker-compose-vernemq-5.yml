@@ -1,5 +1,6 @@
 #
-# Version 2: Using VerneMQ, with conf file
+# Version 5: Using VerneMQ, no conf file, with health check
+#   - Using full json telegraf.conf
 #
 
 version: '3.6'
@@ -10,21 +11,29 @@ services:
     restart: always
     ports:
       - '1883:1883'
+      - '8888:8888'
+    healthcheck:
+      test: curl --fail http://localhost:8888/health || exit 1
+      interval: 20s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
     environment:
       - DOCKER_VERNEMQ_ACCEPT_EULA=yes
       - DOCKER_VERNEMQ_ALLOW_ANONYMOUS=on
     volumes:
       - vernemq_data:/var/lib/vernemq
-      - ./vernemq.conf:/etc/vernemq/vernemq.conf
   telegraf:
     image: telegraf:1.26.3-alpine
     container_name: telegraf
     restart: always
     volumes:
-    - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - ./telegraf-5.conf:/etc/telegraf/telegraf.conf:ro
     depends_on:
-      - influxdb
-      - mqtt
+      influxdb:
+        condition: service_started
+      mqtt:
+        condition: service_healthy    
     links:
       - influxdb
     ports:

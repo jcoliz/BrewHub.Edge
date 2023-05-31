@@ -1,3 +1,7 @@
+#
+# Version 2: Using VerneMQ, no conf file
+#
+
 version: '3.6'
 services:
   mqtt:
