@@ -1,23 +1,34 @@
 version: '3.6'
 services:
   mqtt:
-    image: eclipse-mosquitto:2.0.15
-    container_name: mosquitto
+    image: vernemq/vernemq:1.12.6.2
+    container_name: vernemq
     restart: always
     ports:
       - '1883:1883'
-      - '9001:9001'
+      - '8888:8888'
+    healthcheck:
+      test: curl --fail http://localhost:8888/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 2s
+    environment:
+      - DOCKER_VERNEMQ_ACCEPT_EULA=yes
+      - DOCKER_VERNEMQ_ALLOW_ANONYMOUS=on
     volumes:
-      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - vernemq_data:/var/lib/vernemq
   telegraf:
     image: telegraf:1.26.3-alpine
     container_name: telegraf
     restart: always
     volumes:
-    - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
     depends_on:
-      - influxdb
-      - mqtt
+      influxdb:
+        condition: service_started
+      mqtt:
+        condition: service_healthy    
     links:
       - influxdb
     ports:
