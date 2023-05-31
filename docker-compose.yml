@@ -28,7 +28,7 @@ services:
       influxdb:
         condition: service_started
       mqtt:
-        condition: service_healthy    
+        condition: service_healthy
     links:
       - influxdb
     ports:
@@ -77,6 +77,15 @@ services:
     depends_on:
       - grafana
       - influxdb
+  controller:
+    image: brewhub.net/tempcontroller:local-20230530-221243-amd64
+    scale: 3
+    restart: always
+    environment:
+      - MQTT__SERVER=mqtt
+    depends_on:
+      mqtt:
+        condition: service_healthy
 volumes:
   grafana_data: {}
   influxdb_data: {}
