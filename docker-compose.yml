@@ -75,8 +75,13 @@ services:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
   dashboard:
-    image: brewhub.net/brewhub-dashboard:local-20230531-193831-amd64
+    image: brewhub.net/brewhub-dashboard:local-20230601-100818-amd64
     container_name: dashboard
+    environment:
+      - INFLUXDB__URL=http://influxdb:8086
+      - INFLUXDB__ORG=brewhub
+      - INFLUXDB__BUCKET=dockerism
+      - INFLUXDB__TOKEN=12345678
     restart: always
     ports:
       - '80:80'
