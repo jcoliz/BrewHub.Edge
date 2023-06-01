@@ -26,7 +26,7 @@ services:
       - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
     depends_on:
       influxdb:
-        condition: service_started
+        condition: service_healthy
       mqtt:
         condition: service_healthy
     links:
@@ -48,6 +48,11 @@ services:
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=12345678
     ports:
       - '8086:8086'
+    healthcheck:
+        test: "curl -f http://localhost:8086/ping || exit 1"
+        interval: 5s
+        timeout: 10s
+        retries: 5
     volumes:
       - influxdb_data:/var/lib/influxdb2
   grafana:
@@ -55,7 +60,8 @@ services:
     container_name: grafana
     restart: always
     depends_on:
-      - influxdb
+      influxdb:
+        condition: service_healthy
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
@@ -75,8 +81,8 @@ services:
     ports:
       - '80:80'
     depends_on:
-      - grafana
-      - influxdb
+      influxdb:
+        condition: service_healthy
 volumes:
   grafana_data: {}
   influxdb_data: {}

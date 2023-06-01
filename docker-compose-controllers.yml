@@ -2,7 +2,8 @@ version: '3.6'
 services:
   controller:
     image: brewhub.net/brewhub-controller:local-20230531-193434-amd64
-    scale: 3
+    deploy:
+      replicas: 3
     restart: always
     environment:
       - MQTT__SERVER=mqtt
