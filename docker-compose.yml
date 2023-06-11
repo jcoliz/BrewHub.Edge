@@ -7,12 +7,6 @@ services:
     ports:
       - '1883:1883'
       - '8888:8888'
-    healthcheck:
-      test: curl --fail http://localhost:8888/health || exit 1
-      interval: 10s
-      retries: 5
-      start_period: 10s
-      timeout: 2s
     environment:
       - DOCKER_VERNEMQ_ACCEPT_EULA=yes
       - DOCKER_VERNEMQ_ALLOW_ANONYMOUS=on
@@ -49,7 +43,7 @@ services:
     ports:
       - '8086:8086'
     healthcheck:
-        test: "curl -f http://localhost:8086/ping || exit 1"
+        test: "curl -f http://localhost:8086/health || exit 1"
         interval: 5s
         timeout: 10s
         retries: 5
