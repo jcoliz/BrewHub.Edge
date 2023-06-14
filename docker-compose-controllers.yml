@@ -1,12 +1,34 @@
 version: '3.6'
+
+# NOTE: I would like to start a replica here, but could not find a way
+# to get a consistent device identity into the container.
 services:
-  controller:
+  controller-1:
     image: brewhub.net/brewhub-controller:local-20230601-102410-amd64
-    deploy:
-      replicas: 3
     restart: always
     environment:
       - MQTT__SERVER=mqtt
+      - PROVISIONING__DEVICEID=docker-1
+      - PROVISIONING__DOCKER=true
+    depends_on:
+      mqtt:
+        condition: service_healthy
+  controller-2:
+    image: brewhub.net/brewhub-controller:local-20230601-102410-amd64
+    restart: always
+    environment:
+      - MQTT__SERVER=mqtt
+      - PROVISIONING__DEVICEID=docker-2
+      - PROVISIONING__DOCKER=true
+    depends_on:
+      mqtt:
+        condition: service_healthy
+  controller-3:
+    image: brewhub.net/brewhub-controller:local-20230601-102410-amd64
+    restart: always
+    environment:
+      - MQTT__SERVER=mqtt
+      - PROVISIONING__DEVICEID=docker-3
       - PROVISIONING__DOCKER=true
     depends_on:
       mqtt:
