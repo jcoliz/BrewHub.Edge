@@ -4,7 +4,7 @@ version: '3.6'
 # to get a consistent device identity into the container.
 services:
   controller-1:
-    image: brewhub.net/brewhub-controller:local-20230601-102410-amd64
+    image: brewhub-controller:local
     restart: always
     environment:
       - MQTT__SERVER=mqtt
@@ -14,7 +14,7 @@ services:
       mqtt:
         condition: service_healthy
   controller-2:
-    image: brewhub.net/brewhub-controller:local-20230601-102410-amd64
+    image: brewhub-controller:local
     restart: always
     environment:
       - MQTT__SERVER=mqtt
@@ -24,7 +24,7 @@ services:
       mqtt:
         condition: service_healthy
   controller-3:
-    image: brewhub.net/brewhub-controller:local-20230601-102410-amd64
+    image: brewhub-controller:local
     restart: always
     environment:
       - MQTT__SERVER=mqtt
