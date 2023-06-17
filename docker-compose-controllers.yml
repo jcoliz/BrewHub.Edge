@@ -8,7 +8,7 @@ services:
     restart: always
     environment:
       - MQTT__SERVER=mqtt
-      - PROVISIONING__DEVICEID=docker-1
+      - PROVISIONING__DEVICEID=west-1
       - PROVISIONING__DOCKER=true
     depends_on:
       mqtt:
@@ -18,7 +18,7 @@ services:
     restart: always
     environment:
       - MQTT__SERVER=mqtt
-      - PROVISIONING__DEVICEID=docker-2
+      - PROVISIONING__DEVICEID=west-2
       - PROVISIONING__DOCKER=true
     depends_on:
       mqtt:
@@ -28,7 +28,7 @@ services:
     restart: always
     environment:
       - MQTT__SERVER=mqtt
-      - PROVISIONING__DEVICEID=docker-3
+      - PROVISIONING__DEVICEID=west-3
       - PROVISIONING__DOCKER=true
     depends_on:
       mqtt:
