@@ -1,4 +1,4 @@
-# Distillery Edge Configuration
+# BrewHub.Net: Distillery Edge Configuration
 
 This section defines a docker composition which runs on the edge device, communicating
 with leaf devices on the same network.
