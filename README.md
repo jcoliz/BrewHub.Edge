@@ -2,7 +2,7 @@
 
 BrewHub.Net is an IoT reference architecture using .NET-based device software, InfluxDB and Grafana on a multi-node edge cluster, connected to Azure Services on the backend, with a Vue.JS dashboard for user monitoring and control.
 
-![Reference Architecture](docs/images/IoT%20Reference%20Architecture%20InfluxDB%20Azure.png)
+![Reference Architecture](docs/images/arch.png)
 
 | Layer | Purpose | Projects |
 | -------- | ------- |  ------- |
@@ -11,22 +11,13 @@ BrewHub.Net is an IoT reference architecture using .NET-based device software, I
 | Cloud   | Back-end services collect and reason over multiple sites, provide a big-picture view and wide-scope control plane. | Coming soon!
 | Dashboard | Gives users a single pane of glass to monitor, configure, control, and gain insights about their system. Can run cloud-side to look across an entire operation, or on the edge to give a low-latency view into a single site. | [Dashboard](https://github.com/jcoliz/BrewHub.Dashboard)
 
-The **Six-Unit Distillery** is a reference implementation to demonstrate how this architecture can effectively be brought together across the device, edge, cloud, and web stacks.
-
 ## What's Here: BrewHub.Net Edge Stack
 
-This section defines a docker composition which runs on the edge device, communicating
-with leaf devices on the same network.
-
-Currently, there is no solution-specific code running on the edge layer. But if there is
-at some point, this is where it would reside.
+This repository defines a docker composition which runs on the edge device, communicating with leaf devices on the same network. Ultimately this will be a Kubernetes configuration. For now, it's here as a simple docker composition for prototyping.
 
 ## Getting Started
 
-This project contains a docker compose file demonstrating the edge stack on a single machine. Additionally, you can choose to bring it up with synthetic controllers for demo purposes to have data to look at.
-
-The fastest way is to include the controllers in the composition (as below). Otherwise just leave off the second YAML file to bring up only the actual edge stack.
-
+The `docker compose` file demonstrates the edge stack on a single machine. To get started quickly, you can additionally bring up synthetic controllers for demo purposes to have data to look at.
 
 ```
 $ docker compose -f docker-compose.yml -f docker-compose-controllers.yml up -d
