@@ -4,12 +4,19 @@ BrewHub.Net is an IoT reference architecture using .NET-based device software, I
 
 ![Reference Architecture](docs/images/arch.png)
 
-| Layer | Purpose | Projects |
-| -------- | ------- |  ------- |
-| Devices | Compute devices connected to machinery, equipment or others. Drives sensors and actuators to sense or drive the attached equipment. May be connected directly, or through industrial control systems (e.g. PLCs) | [6-Unit Controller](https://github.com/jcoliz/BrewHub.Devices.Still6UnitController)
-| Edge  | Multi-node edge cluster(s), located on-premises, connected to each device. Handles the 'hot path' of data as it immediately comes off devices. Provides key near-real-time insights and alerting. Cools the data slightly before sending a less-frequent and more-focused data representation to the cloud  | [Edge](https://github.com/jcoliz/BrewHub.Edge)
-| Cloud   | Back-end services collect and reason over multiple sites, provide a big-picture view and wide-scope control plane. | Coming soon!
-| Dashboard | Gives users a single pane of glass to monitor, configure, control, and gain insights about their system. Can run cloud-side to look across an entire operation, or on the edge to give a low-latency view into a single site. | [Dashboard](https://github.com/jcoliz/BrewHub.Dashboard)
+## Overview
+
+**Device Layer**: Compute devices connected to machinery, equipment or other special-purpose hardware. Drives sensors and actuators to sense or drive the attached equipment. May be connected directly, or through industrial control systems (e.g. PLCs)
+* [Six Unit Distillery Controller](https://github.com/jcoliz/BrewHub.Devices.Still6UnitController)
+
+**Edge Layer**: Multi-node edge cluster(s), located on-premises, connected to each device. Handles the 'hot path' of data as it immediately comes off devices. Provides key near-real-time insights and alerting. Cools the data slightly before sending a less-frequent and more-focused data representation to the cloud
+* [Edge Stack](https://github.com/jcoliz/BrewHub.Edge) <-- You are here!
+  
+**Cloud Layer**: Back-end services collect and reason over multiple sites, provide a big-picture view and wide-scope control plane.
+* Projects coming soon!
+
+**Dashboard**: Gives users a single pane of glass to monitor, configure, control, and gain insights about their system. Can run cloud-side to look across an entire operation, or on the edge to give a low-latency view into a single site.
+* [Dashboard](https://github.com/jcoliz/BrewHub.Dashboard)
 
 ## What's Here: BrewHub.Net Edge Stack
 
