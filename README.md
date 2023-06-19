@@ -27,7 +27,7 @@ This repository defines a docker composition which runs on the edge device, comm
 The `docker compose` file demonstrates the edge stack on a single machine. To get started quickly, you can additionally bring up synthetic controllers for demo purposes to have data to look at.
 
 ```
-$ docker compose -f docker-compose.yml -f docker-compose-controllers.yml up -d
+$ docker compose -f docker-compose.yml -f docker-compose-controllers.yml up
 ```
 
 Have a view of everything
