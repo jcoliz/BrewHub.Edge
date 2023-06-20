@@ -69,13 +69,15 @@ services:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
   dashboard:
-    image: jcoliz/brewhub-dashboard:0.0.3-amd64
+    image: jcoliz/brewhub-dashboard:0.1.1-amd64
     container_name: dashboard
     environment:
       - INFLUXDB__URL=http://influxdb:8086
       - INFLUXDB__ORG=brewhub
       - INFLUXDB__BUCKET=dockerism
       - INFLUXDB__TOKEN=12345678
+      - MQTT__SERVER=mqtt
+      - MQTT__CLIENTID=docker-dashboard
     restart: always
     ports:
       - '80:80'
