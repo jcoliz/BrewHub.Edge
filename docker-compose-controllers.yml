@@ -4,35 +4,41 @@ version: '3.6'
 # to get a consistent device identity into the container.
 services:
   controller-1:
-    image: jcoliz/brewhub-still6unit-controller:0.1.2-amd64
+    image: jcoliz/brewhub-still6unit-controller:0.1.4-amd64
     restart: always
     environment:
       - MQTT__SERVER=mqtt
       - PROVISIONING__DEVICEID=west-1
       - PROVISIONING__DOCKER=true
       - INITIALSTATE__ROOT__SerialNumber=docker
+      - INITIALSTATE__rt__targetTemp=70
+      - INITIALSTATE__rt__tcorr=-2.5
     depends_on:
       mqtt:
         condition: service_healthy
   controller-2:
-    image: jcoliz/brewhub-still6unit-controller:0.1.2-amd64
+    image: jcoliz/brewhub-still6unit-controller:0.1.4-amd64
     restart: always
     environment:
       - MQTT__SERVER=mqtt
       - PROVISIONING__DEVICEID=west-2
       - PROVISIONING__DOCKER=true
       - INITIALSTATE__ROOT__SerialNumber=docker
+      - INITIALSTATE__rt__targetTemp=60
+      - INITIALSTATE__rt__tcorr=-5.0
     depends_on:
       mqtt:
         condition: service_healthy
   controller-3:
-    image: jcoliz/brewhub-still6unit-controller:0.1.2-amd64
+    image: jcoliz/brewhub-still6unit-controller:0.1.4-amd64
     restart: always
     environment:
       - MQTT__SERVER=mqtt
       - PROVISIONING__DEVICEID=west-3
       - PROVISIONING__DOCKER=true
       - INITIALSTATE__ROOT__SerialNumber=docker
+      - INITIALSTATE__rt__targetTemp=50
+      - INITIALSTATE__rt__tcorr=-7.5
     depends_on:
       mqtt:
         condition: service_healthy
