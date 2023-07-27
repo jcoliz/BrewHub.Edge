@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 3,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -794,6 +794,6 @@
   "timezone": "",
   "title": "Main",
   "uid": "dbe305b4-351b-4a0c-8b09-c959f44d4629",
-  "version": 13,
+  "version": 1,
   "weekStart": ""
 }
