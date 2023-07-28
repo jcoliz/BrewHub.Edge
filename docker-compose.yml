@@ -69,7 +69,7 @@ services:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
   dashboard:
-    image: jcoliz/brewhub-dashboard:0.1.7-amd64
+    image: jcoliz/brewhub-dashboard:0.1.8-amd64
     container_name: dashboard
     environment:
       - INFLUXDB__URL=http://influxdb:8086
