@@ -13,7 +13,8 @@ BrewHub.Net is an IoT reference architecture using .NET-based device software, I
 * [Edge Stack](https://github.com/jcoliz/BrewHub.Edge) <-- You are here!
   
 **Cloud Layer**: Back-end services collect and reason over multiple sites, provide a big-picture view and wide-scope control plane.
-* Projects coming soon!
+* [Digital Twins](https://github.com/jcoliz/BrewHub.DigitalTwins)
+* More coming!
 
 **Dashboard**: Gives users a single pane of glass to monitor, configure, control, and gain insights about their system. Can run cloud-side to look across an entire operation, or on the edge to give a low-latency view into a single site.
 * [Dashboard](https://github.com/jcoliz/BrewHub.Dashboard)
