@@ -51,3 +51,7 @@ f390c1cde46d   grafana/grafana:9.5.2                              grafana       
 Bring up http://localhost:80 in your browser to connect with the local instance of the [BrewHub.Net Dashboard](https://github.com/jcoliz/BrewHub.Dashboard).
 
 ![Dashboard](docs/images/Dashboard.png)
+
+## View the Grafana Dashboards on `localhost:3000`
+
+![Grafana](docs/images/grafana.png)
