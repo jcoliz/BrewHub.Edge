@@ -4,7 +4,7 @@ version: '3.6'
 # to get a consistent device identity into the container.
 services:
   controller-1:
-    image: jcoliz/brewhub-still6unit-controller:0.1.10-amd64
+    image: jcoliz/brewhub-still6unit-controller:0.1.14-amd64
     restart: always
     environment:
       - MQTT__SERVER=mqtt
@@ -17,7 +17,7 @@ services:
       mqtt:
         condition: service_healthy
   controller-2:
-    image: jcoliz/brewhub-still6unit-controller:0.1.10-amd64
+    image: jcoliz/brewhub-still6unit-controller:0.1.14-amd64
     restart: always
     environment:
       - MQTT__SERVER=mqtt
@@ -30,7 +30,7 @@ services:
       mqtt:
         condition: service_healthy
   controller-3:
-    image: jcoliz/brewhub-still6unit-controller:0.1.10-amd64
+    image: jcoliz/brewhub-still6unit-controller:0.1.14-amd64
     restart: always
     environment:
       - MQTT__SERVER=mqtt
