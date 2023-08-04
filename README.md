@@ -11,7 +11,8 @@ BrewHub.Net is an IoT reference architecture using .NET-based device software, I
 
 **Edge Layer**: Multi-node edge cluster(s), located on-premises, connected to each device. Handles the 'hot path' of data as it immediately comes off devices. Provides key near-real-time insights and alerting. Cools the data slightly before sending a less-frequent and more-focused data representation to the cloud
 * [Edge Stack](https://github.com/jcoliz/BrewHub.Edge) <-- You are here!
-  
+* [Protocol Definition](https://github.com/jcoliz/BrewHub.Protocol.Mqtt)
+   
 **Cloud Layer**: Back-end services collect and reason over multiple sites, provide a big-picture view and wide-scope control plane.
 * [Digital Twins](https://github.com/jcoliz/BrewHub.DigitalTwins)
 * More coming!
